@@ -1,6 +1,7 @@
 # # import app, and builder that connects the GUI
 # # create application
 # # create build function
+from kivy.core.window import Window
 
 # Default initialization
 from kivy.app import App
@@ -9,8 +10,12 @@ import requests
 
 GUI = Builder.load_file('screen.kv') # this is the ROOT file being loaded
 
-class MyApplication(App):
+class MyApp(App):
     def build(self):
+        # not default initialization
+        Window.clearcolor = (1,1,1,1)
+        # not default initialization
+        self.title = 'Currency Quotation'
         return GUI
 # Default initialization
     def on_start(self): # self means get "MyApplication class" 
@@ -33,7 +38,5 @@ class MyApplication(App):
         bid = request_data[f'{currency}BRL']['bid'] # getting bid from json
         return bid
 
- 
-
 # To run the application
-MyApplication().run()
+MyApp().run()
